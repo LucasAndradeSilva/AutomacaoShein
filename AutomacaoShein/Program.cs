@@ -14,20 +14,24 @@ namespace AutomacaoShein
         static void Main(string[] args)
         {
             Console.Title = "Pontos Shein";
-                
-            // Appium server
-            var processServer = new Process();
-            processServer.StartInfo.FileName = "cmd.exe"; // Caminho completo para o executável do emulador
-            processServer.StartInfo.Arguments = "/C appium"; // Argumentos para iniciar o emulador com o AVD desejado
-            processServer.StartInfo.CreateNoWindow = false;                        
-            processServer.Start();            
 
             // Abre emulador
             var processEmulador = new Process();
             processEmulador.StartInfo.FileName = "C:\\Android\\android-sdk\\emulator\\emulator.exe"; // Caminho completo para o executável do emulador
             processEmulador.StartInfo.Arguments = "-avd AutomacaoCelular"; // Argumentos para iniciar o emulador com o AVD desejado
-            processEmulador.StartInfo.CreateNoWindow = false;                        
+            processEmulador.StartInfo.CreateNoWindow = false;
             processEmulador.Start();
+
+            Thread.Sleep(5000);
+
+            // Appium server
+            var processServer = new Process();
+            processServer.StartInfo.FileName = "cmd.exe"; // Caminho completo para o executável do emulador
+            processServer.StartInfo.Arguments = "/C appium"; // Argumentos para iniciar o emulador com o AVD desejado
+            processServer.StartInfo.CreateNoWindow = true;                        
+            processServer.Start();
+
+            Thread.Sleep(5000);
 
             //Appium
             var appiumOptions = new AppiumOptions();
